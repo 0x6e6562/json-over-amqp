@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" backgroundColor="white"
+				layout="absolute" creationComplete="onCreationComplete()" width="412" height="238" backgroundGradientAlphas="[0.0, 0.0]">
+	<mx:Script>
+		<![CDATA[
+			import com.squarespace.hopper.json.JSONEvent;
+			import com.squarespace.hopper.json.util.ClientContext;
+			import org.pranaframework.ioc.factory.xml.XMLObjectFactory;
+			import com.squarespace.hopper.json.impl.AMQPClientProxy;
+			
+			private var proxy:AMQPClientProxy;
+			private var factory:XMLObjectFactory = new XMLObjectFactory();
+			private var ctx:ClientContext = new ClientContext();
+		
+			private function onCreationComplete():void {
+				factory.addConfig(ctx.getXML());
+				factory.load();
+				proxy = factory.getObject("client");				 				
+ 			}
+ 		
+ 			public function submitRequest():void {
+ 				var o:* = new Object();
+ 				o.number = new Number(input.text);
+ 				proxy.send(o,onResponse);	
+ 			}
+ 			
+ 			public function onResponse(event:JSONEvent):void { 				
+ 				result.text = "fib(" + event.result.question + ") -> " + event.result.answer;
+ 			}
+ 			
+		]]>
+	</mx:Script>
+	<mx:Label x="27" y="25" text="Fibonacci Calculator" fontSize="20"/>
+	<mx:Button x="156" y="83" label="Calculate" click="submitRequest()" enabled="true"/>
+	<mx:Text x="167" y="149" id="result"/>
+	<mx:TextInput x="50" y="83" id="input" width="81"/>
+	<mx:Label x="50" y="149" text="Result"/>
+	
+</mx:Application>

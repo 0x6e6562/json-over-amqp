@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<objects xmlns="http://www.pranaframework.org/objects"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.pranaframework.org/objects http://www.pranaframework.org/schema/objects/prana-objects-0.5.xsd">
+    
+    <object id="server" class="com.squarespace.hopper.json.mock.MockServer">
+    
+    </object>
+    
+    <object id="client" class="com.squarespace.hopper.json.mock.MockClient">
+    	<constructor-arg ref="server"/>
+    </object>
+    
+    
+    
+</objects>

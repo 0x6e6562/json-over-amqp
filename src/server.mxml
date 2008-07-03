@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+				layout="horizontal" backgroundColor="black" 
+				creationComplete="onCreationComplete()" width="446" height="210" verticalAlign="middle" horizontalAlign="center">
+	<mx:Script>
+		<![CDATA[
+			import com.squarespace.hopper.json.demo.Fibonacci;
+			import com.squarespace.hopper.json.impl.AMQPServer;
+			import com.squarespace.hopper.json.util.ServerContext;
+			import org.pranaframework.ioc.factory.xml.XMLObjectFactory;
+			
+			private var amqpServer:AMQPServer;
+			private var fib:Fibonacci;
+			private var factory:XMLObjectFactory = new XMLObjectFactory();
+			private var ctx:ServerContext = new ServerContext();
+			
+			private function onCreationComplete():void {
+				factory.addConfig(ctx.getXML());
+				factory.load();
+				factory.getObject("server"); 				
+ 			}
+ 			
+		]]>
+	</mx:Script>
+	
+	
+	<mx:Label text="PDP-11" fontSize="23" color="#F6FAFB"/>
+	
+</mx:Application>

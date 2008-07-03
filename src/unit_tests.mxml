@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+				xmlns:flexunit="flexunit.flexui.*"
+				layout="absolute"
+				creationComplete="onCreationComplete()">
+	<mx:Script>
+		<![CDATA[
+			import org.pranaframework.context.support.XMLApplicationContext;
+			import com.squarespace.hopper.json.test.MockClientTest;
+			import com.squarespace.hopper.json.mock.MockClient;
+			import com.squarespace.hopper.json.mock.MockServer;
+			import flexunit.framework.TestSuite;
+			
+			private var ctx:XMLApplicationContext;
+			private var client:MockClient;
+			private var server:MockServer;
+			
+			private function onCreationComplete():void {				
+				ctx = new XMLApplicationContext("testContext.xml");
+            	ctx.addEventListener(Event.COMPLETE,onApplicationContextComplete);
+            	ctx.load(); 				
+ 			}
+ 			
+ 			private function onApplicationContextComplete(e:Event):void {
+ 				testRunner.test = com.squarespace.hopper.json.test.MockClientTest.suite(ctx);
+ 				testRunner.startTest();
+ 			}
+ 			
+ 			
+			
+		]]>
+	</mx:Script>
+	<flexunit:TestRunnerBase id="testRunner" width="100%" height="75%" />	
+</mx:Application>
