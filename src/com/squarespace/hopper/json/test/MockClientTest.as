@@ -17,12 +17,11 @@
  **/
 package com.squarespace.hopper.json.test
 {
-	import com.squarespace.hopper.json.AMQPClient;
-	import com.squarespace.hopper.json.JSONEvent;
-	
 	import flexunit.framework.TestCase;
 	import flexunit.framework.TestSuite;
 	
+	import org.amqp.patterns.CorrelatedMessageEvent;
+	import org.amqp.patterns.RpcClient;
 	import org.pranaframework.context.support.XMLApplicationContext;
 
 	public class MockClientTest extends TestCase
@@ -44,14 +43,14 @@ package com.squarespace.hopper.json.test
 		}
 		
 		public function testClient():void {
-			var client:AMQPClient = ctx.getObject("client") as AMQPClient;			
+			var client:RpcClient = ctx.getObject("client") as RpcClient;			
 			var testObject:* = new Object();
 			testObject.first = 	"foo";
 			testObject.second = "bar";
 			client.send(testObject, addAsync(onResult, TIMEOUT) );			
 		}
 		
-		public function onResult(event:JSONEvent):void {
+		public function onResult(event:CorrelatedMessageEvent):void {
 			trace("finished");
 			assertEquals("foobar",event.result);
 		}

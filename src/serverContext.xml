@@ -14,8 +14,11 @@
     	<constructor-arg ref="connectionState"/>
     </object>
     
-    <object id="server" class="com.squarespace.hopper.json.impl.AMQPServer">
+    <object id="serializer" class="com.squarespace.hopper.json.JSONSerializer"/>
+    
+    <object id="server" class="org.amqp.patterns.impl.RpcServer">
     	<constructor-arg ref="connection"/>
+    	<property name="serializer" ref="serializer"/>
     	<property name="realm" value="/data"/>
     	<property name="exchange" value="x"/>
     	<property name="exchangeType" value="topic"/>

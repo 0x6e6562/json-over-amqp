@@ -17,8 +17,8 @@
  **/
 package com.squarespace.hopper.json.demo
 {
-	import com.squarespace.hopper.json.RequestHandler;
-
+	import org.amqp.patterns.RequestHandler;
+	
 	public class Fibonacci implements RequestHandler
 	{
 

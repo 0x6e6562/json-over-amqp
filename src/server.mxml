@@ -4,12 +4,14 @@
 				creationComplete="onCreationComplete()" width="446" height="210" verticalAlign="middle" horizontalAlign="center">
 	<mx:Script>
 		<![CDATA[
+			import com.squarespace.hopper.json.JSONSerializer;
+			import org.amqp.patterns.impl.RpcServer;
 			import com.squarespace.hopper.json.demo.Fibonacci;
-			import com.squarespace.hopper.json.impl.AMQPServer;
 			import com.squarespace.hopper.json.util.ServerContext;
 			import org.pranaframework.ioc.factory.xml.XMLObjectFactory;
 			
-			private var amqpServer:AMQPServer;
+			private var amqpServer:RpcServer;
+			private var json:JSONSerializer;
 			private var fib:Fibonacci;
 			private var factory:XMLObjectFactory = new XMLObjectFactory();
 			private var ctx:ServerContext = new ServerContext();

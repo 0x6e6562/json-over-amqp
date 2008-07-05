@@ -17,7 +17,7 @@
  **/
 package com.squarespace.hopper.json.mock
 {
-	import com.squarespace.hopper.json.RequestHandler;
+	import org.amqp.patterns.RequestHandler;
 
 	public class MockServer implements RequestHandler
 	{
